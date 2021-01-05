@@ -1,0 +1,22 @@
+.fruit {
+    background-color: green;
+}
+.body {
+    background-color: red;
+}
+.head {
+    background-color: blue;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid rgba(0,0,0,0.25);
+}
+
+table tbody tr td {
+    width: 15px;
+    height: 15px;
+}

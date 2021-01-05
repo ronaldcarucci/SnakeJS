@@ -1,5 +1,13 @@
 # SnakeJS
 
+<table>
+    <tr>
+        <td>
+            <img src="https://github.com/ronaldcarucci/SnakeJS/blob/master/logo.png">
+        </td>
+    </tr>
+</table>
+
 ## Introduction
 
 This is a tiny version of Snake in simple JS version.

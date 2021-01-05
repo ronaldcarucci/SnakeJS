@@ -1,7 +1,7 @@
 class Snake {
-    constructor(lines, rows, speed=50) {
+    constructor(lines, columns, speed=50) {
         this.lines = lines;
-        this.rows = rows;
+        this.columns = columns;
         this.body = [new Point(3,3),new Point(2,3),new Point(1,3)];
         this.direction = "RIGHT";
         this.score = 0;
@@ -27,14 +27,12 @@ class Snake {
             case "LEFT" :
                 this.body[0].x -= 1;
                 if (this.body[0].x < 0)
-                    this.body[0].x = this.rows-1;
-                break;
+                    this.body[0].x = this.columns-1;
                 break;
             case "RIGHT" :
                 this.body[0].x += 1;
-                if (this.body[0].x >= this.rows)
+                if (this.body[0].x >= this.columns)
                     this.body[0].x = 0;
-                break;
                 break;
         }
     }
@@ -66,14 +64,14 @@ class Point {
     }
 }
 
-let lines = 30;
-let rows = 20;
-let snake = new Snake(lines, rows, 50);
+let snake = new Snake(30, 20, 50);
 let counts = 0;
 let timer = null;
 
 $(document).ready(function() {
-    generateGrid(lines,rows);
+    generateGrid(snake);
+    generateBlocks(snake);
+    placeSnakeIntoGrid(snake);
     $("span#score").text(snake.score);
     $(document).keypress(function(event) {
         switch(event.originalEvent.key) {
@@ -95,7 +93,6 @@ $(document).ready(function() {
                 break;
         }
     });
-    placeSnakeIntoGrid(snake);
     timer = setInterval(()=> {
         executeGame();
     },snake.speed);
@@ -103,10 +100,11 @@ $(document).ready(function() {
 
 function executeGame() {
     if((++counts % 20) == 0 && $(".fruit").length == 0)
-        generateFruit();
+        generateFruit(snake);
     let lastPoint = snake.getLastPoint();
     snake.move();
-    if (snake.isAlive())
+
+    if (snake.isAlive() && !(checkblocks(snake)))
     {
         if (checkFruit(snake)) {
             snake.grow(lastPoint);
@@ -122,27 +120,44 @@ function executeGame() {
     }
 }
 
-function generateGrid(lines = 20, rows = 20) {
-    for (let i = 0; i < lines ; i++) {
+function generateGrid(snake) {
+    for (let i = 0; i < snake.lines ; i++) {
         let dom = '<tr>';
-        for (let j = 0; j < rows ; j++)
+        for (let j = 0; j < snake.columns ; j++)
             dom +='<td id="grid-'+i+'-'+j+'" data-x="'+j+'" data-y="'+i+'"></td>';
         dom += '</tr>';
         $("#grid").append(dom);
     }
 }
 
-function generateFruit() {
-    let x = Math.floor(Math.random() * rows);
-    let y = Math.floor(Math.random() * lines);
+function generateFruit(snake) {
+    let x = Math.floor(Math.random() * snake.columns);
+    let y = Math.floor(Math.random() * snake.lines);
     let id = "#grid-"+y+"-"+x;
-    if (!($(id).hasClass('body')) && !($(id).hasClass('head')))
+    if (!($(id).hasClass('body')) && !($(id).hasClass('head')) && !($(id).hasClass('block')))
         $(id).addClass('fruit');
+}
+
+function generateBlocks(snake) {
+    for (let i = 0 ; i < 3 ; i++) {
+        let x = Math.floor(Math.random() * snake.columns);
+        let y = Math.floor(Math.random() * snake.lines);  
+        let id = "#grid-"+y+"-"+x;
+        if (!($(id).hasClass('body')) && !($(id).hasClass('head')))
+            $(id).addClass('block');
+    }
 }
 
 function checkFruit(snake) {
     if (snake.body[0].x == parseInt($($(".fruit")).data("x")) && snake.body[0].y == parseInt($($(".fruit")).data("y")))
         return true;
+    return false;
+}
+
+function checkblocks(snake) {
+    for (let i = 0 ; i < $(".block").length ; i++)
+        if (snake.body[0].x == parseInt($($(".block")[i]).data("x")) && snake.body[0].y == parseInt($($(".block")[i]).data("y")))
+            return true;
     return false;
 }
 

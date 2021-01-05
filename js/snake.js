@@ -1,5 +1,5 @@
 class Snake {
-    constructor(lines, columns, speed=50) {
+    constructor(lines=10, columns=10, speed=50) {
         this.lines = lines;
         this.columns = columns;
         this.body = [new Point(3,3),new Point(2,3),new Point(1,3)];
@@ -41,11 +41,11 @@ class Snake {
         return new Point(this.body[this.body.length-1].x,this.body[this.body.length-1].y);
     }
 
-    grow(point) {
+    grow(point = new Point()) {
         this.body.push(point);
     }
 
-    changeDirection(direction) {
+    changeDirection(direction = "") {
         this.direction = direction;
     }
 
@@ -58,7 +58,7 @@ class Snake {
 }
 
 class Point {
-    constructor(x,y) {
+    constructor(x=0,y=0) {
         this.x = x;
         this.y = y;
     }
@@ -120,7 +120,7 @@ function executeGame() {
     }
 }
 
-function generateGrid(snake) {
+function generateGrid(snake = new Snake()) {
     for (let i = 0; i < snake.lines ; i++) {
         let dom = '<tr>';
         for (let j = 0; j < snake.columns ; j++)
@@ -130,7 +130,7 @@ function generateGrid(snake) {
     }
 }
 
-function generateFruit(snake) {
+function generateFruit(snake = new Snake) {
     let x = Math.floor(Math.random() * snake.columns);
     let y = Math.floor(Math.random() * snake.lines);
     let id = "#grid-"+y+"-"+x;
@@ -138,7 +138,7 @@ function generateFruit(snake) {
         $(id).addClass('fruit');
 }
 
-function generateBlocks(snake) {
+function generateBlocks(snake = new Snake()) {
     for (let i = 0 ; i < 3 ; i++) {
         let x = Math.floor(Math.random() * snake.columns);
         let y = Math.floor(Math.random() * snake.lines);  
@@ -148,20 +148,20 @@ function generateBlocks(snake) {
     }
 }
 
-function checkFruit(snake) {
+function checkFruit(snake = new Snake()) {
     if (snake.body[0].x == parseInt($($(".fruit")).data("x")) && snake.body[0].y == parseInt($($(".fruit")).data("y")))
         return true;
     return false;
 }
 
-function checkblocks(snake) {
+function checkblocks(snake = new Snake()) {
     for (let i = 0 ; i < $(".block").length ; i++)
         if (snake.body[0].x == parseInt($($(".block")[i]).data("x")) && snake.body[0].y == parseInt($($(".block")[i]).data("y")))
             return true;
     return false;
 }
 
-function placeSnakeIntoGrid(snake) {
+function placeSnakeIntoGrid(snake = new Snake()) {
     $("#grid tr td").removeClass('head').removeClass('body');
     for(let i = 0; i < snake.body.length ; i++) {
         let id = "#grid-"+snake.body[i].y+"-"+snake.body[i].x;

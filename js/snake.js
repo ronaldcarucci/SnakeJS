@@ -1,9 +1,11 @@
 class Snake {
-    constructor(lines, rows) {
+    constructor(lines, rows, speed=50) {
         this.lines = lines;
         this.rows = rows;
         this.body = [new Point(3,3),new Point(2,3),new Point(1,3)];
         this.direction = "RIGHT";
+        this.score = 0;
+        this.speed = speed;
     }
 
     move() {
@@ -50,10 +52,9 @@ class Snake {
     }
 
     isAlive() {
-        for(let i = 1; i < this.body.length; i++) {
+        for(let i = 1; i < this.body.length; i++)
             if ((this.body[0].x == this.body[i].x) && (this.body[0].y == this.body[i].y))
                 return false;
-        }
         return true;
     }
 }
@@ -67,13 +68,13 @@ class Point {
 
 let lines = 30;
 let rows = 20;
-let snake = new Snake(lines, rows);
+let snake = new Snake(lines, rows, 50);
 let counts = 0;
-let speed = 50;
 let timer = null;
 
 $(document).ready(function() {
     generateGrid(lines,rows);
+    $("span#score").text(snake.score);
     $(document).keypress(function(event) {
         switch(event.originalEvent.key) {
             case 'z' :
@@ -97,8 +98,7 @@ $(document).ready(function() {
     placeSnakeIntoGrid(snake);
     timer = setInterval(()=> {
         executeGame();
-    },speed);
-
+    },snake.speed);
 });
 
 function executeGame() {
@@ -111,6 +111,7 @@ function executeGame() {
         if (checkFruit(snake)) {
             snake.grow(lastPoint);
             $(".fruit").removeClass("fruit");
+            $("span#score").text(++snake.score);
         }
         placeSnakeIntoGrid(snake);
     }
@@ -124,32 +125,24 @@ function executeGame() {
 function generateGrid(lines = 20, rows = 20) {
     for (let i = 0; i < lines ; i++) {
         let dom = '<tr>';
-        for (let j = 0; j < rows ; j++) {
+        for (let j = 0; j < rows ; j++)
             dom +='<td id="grid-'+i+'-'+j+'" data-x="'+j+'" data-y="'+i+'"></td>';
-        }
         dom += '</tr>';
-        $("#grid tbody").append(dom);
+        $("#grid").append(dom);
     }
 }
 
 function generateFruit() {
-    let x = -1;
-    let y = -1;
-    x = Math.floor(Math.random() * rows);
-    y = Math.floor(Math.random() * lines);
+    let x = Math.floor(Math.random() * rows);
+    let y = Math.floor(Math.random() * lines);
     let id = "#grid-"+y+"-"+x;
-    let color = 'green' ;
     if (!($(id).hasClass('body')) && !($(id).hasClass('head')))
         $(id).addClass('fruit');
 }
 
 function checkFruit(snake) {
-    let x = parseInt($($(".fruit")).data("x"));
-    let y = parseInt($($(".fruit")).data("y"));
-    if (snake.body[0].x == x && snake.body[0].y == y)
-    {
+    if (snake.body[0].x == parseInt($($(".fruit")).data("x")) && snake.body[0].y == parseInt($($(".fruit")).data("y")))
         return true;
-    }
     return false;
 }
 
@@ -157,7 +150,6 @@ function placeSnakeIntoGrid(snake) {
     $("#grid tr td").removeClass('head').removeClass('body');
     for(let i = 0; i < snake.body.length ; i++) {
         let id = "#grid-"+snake.body[i].y+"-"+snake.body[i].x;
-        let color = i == 0 ? 'head' : 'body';
-        $(id).addClass(color);
+        $(id).addClass(i == 0 ? 'head' : 'body');
     }
 }

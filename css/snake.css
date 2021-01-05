@@ -1,22 +1,19 @@
 .fruit {
-    background-color: green;
+    background-color: #008000;
 }
 .body {
-    background-color: red;
+    background-color: #ff0000;
 }
 .head {
-    background-color: blue;
+    background-color: #0000ff;
 }
-
 table {
     border-collapse: collapse;
 }
-
 table, td, th {
-    border: 1px solid rgba(0,0,0,0.25);
+    border: 1px solid #00000040;
 }
-
-table tbody tr td {
+table tr td {
     width: 15px;
     height: 15px;
 }

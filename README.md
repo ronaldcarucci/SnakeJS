@@ -90,3 +90,11 @@ or as a complete version
 ## Demo
 
 A demo is available [here](https://snakejs.onrender.com/). 
+
+<table>
+    <tr>
+        <td>
+            <img src="https://github.com/ronaldcarucci/SnakeJS/blob/master/demo.png">
+        </td>
+    </tr>
+</table>

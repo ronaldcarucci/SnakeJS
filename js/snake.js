@@ -159,7 +159,7 @@ function generateFruit(snake = new Snake) {
 }
 
 function generateBlocks(snake = new Snake()) {
-    for (let i = 0 ; i < 3 ; i++) {
+    for (let i = 0 ; i < Math.floor(Math.random() * 7) + 3; i++) {
         let x = Math.floor(Math.random() * snake.columns);
         let y = Math.floor(Math.random() * snake.lines);  
         let id = "#grid-"+y+"-"+x;

@@ -93,7 +93,7 @@ $(document).ready(function() {
                 break;
         }
     });
-    $("#controls button").click(function(){
+    $("#controls span").click(function(){
         switch($(this).data('key')) {
             case 'z' :
                 if (snake.direction != "DOWN")

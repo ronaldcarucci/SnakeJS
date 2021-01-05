@@ -3,16 +3,56 @@
 <head>
     <meta charset="UTF-8"/>
     <title>SnakeJS</title>
+    <link rel="stylesheet" href="./css/bulma.min.css" />
     <link rel="stylesheet" href="./css/snake.css" />
 </head>
 <body>
 
-    <table id="grid">
-    </table>
-
     <p>
         Score : <span id="score"></span>
     </p>
+
+    <table id="grid">
+    </table>
+
+    <div class="controls-container">
+        <table id="controls">
+            <tr>
+                <td></td>
+                <td>
+                    <button class="button is-medium" data-key="z">
+                        <span class="icon">
+                            <i class="fas fa-arrow-alt-circle-up fa-lg"></i>
+                        </span>
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="button is-medium" data-key="q">
+                        <span class="icon">
+                            <i class="fas fa-arrow-alt-circle-left fa-lg"></i>
+                        </span>
+                    </button>
+                </td>
+                <td>
+                    <button class="button is-medium" data-key="s">
+                        <span class="icon">
+                            <i class="fas fa-arrow-alt-circle-down fa-lg"></i>
+                        </span>
+                    </button>
+                </td>
+                <td>
+                    <button class="button is-medium" data-key="d">
+                        <span class="icon">
+                            <i class="fas fa-arrow-alt-circle-right fa-lg"></i>
+                        </span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
 
     <div>
         <h3> Comment jouer ?</h3>
@@ -22,6 +62,7 @@
         </p>
     </div>
 
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     <script src="./js/jquery-3.5.1.slim.min.js"></script>
     <script src="./js/snake.js"></script>
 </body>

@@ -93,6 +93,26 @@ $(document).ready(function() {
                 break;
         }
     });
+    $("#controls button").click(function(){
+        switch($(this).data('key')) {
+            case 'z' :
+                if (snake.direction != "DOWN")
+                    snake.changeDirection("UP");
+                break;
+            case 's' :
+                if (snake.direction != "UP")
+                    snake.changeDirection("DOWN");
+                break;
+            case 'q' :
+                if (snake.direction != "RIGHT")
+                    snake.changeDirection("LEFT");
+                break;
+            case 'd' :
+                if (snake.direction != "LEFT")
+                    snake.changeDirection("RIGHT");
+                break;
+        }
+    });
     timer = setInterval(()=> {
         executeGame();
     },snake.speed);

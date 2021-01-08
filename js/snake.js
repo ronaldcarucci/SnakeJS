@@ -64,7 +64,7 @@ class Point {
     }
 }
 
-let snake = new Snake(30, 20, 50);
+let snake = new Snake(30, 20, 100);
 let counts = 0;
 let timer = null;
 

@@ -119,7 +119,7 @@ $(document).ready(function() {
 });
 
 function executeGame() {
-    if((++counts % 20) == 0 && $(".fruit").length == 0)
+    if((++counts % 20) == 0 && document.querySelectorAll('.fruit').length == 0)
         generateFruit(snake);
     let lastPoint = snake.getLastPoint();
     snake.move();
@@ -128,8 +128,8 @@ function executeGame() {
     {
         if (checkFruit(snake)) {
             snake.grow(lastPoint);
-            $(".fruit").removeClass("fruit");
-            $("span#score").text(++snake.score);
+            document.querySelector('.fruit').classList.remove('fruit');
+            document.querySelector('span#score').innerHTML = ++snake.score;
         }
         placeSnakeIntoGrid(snake);
     }
@@ -169,22 +169,28 @@ function generateBlocks(snake = new Snake()) {
 }
 
 function checkFruit(snake = new Snake()) {
-    if (snake.body[0].x == parseInt($($(".fruit")).data("x")) && snake.body[0].y == parseInt($($(".fruit")).data("y")))
-        return true;
+    let fruit = document.querySelector('.fruit');
+    if (!fruit) return false;
+    if (snake.body[0].x == parseInt(fruit.dataset.x) && snake.body[0].y == parseInt(fruit.dataset.y)) return true;
     return false;
 }
 
 function checkblocks(snake = new Snake()) {
-    for (let i = 0 ; i < $(".block").length ; i++)
-        if (snake.body[0].x == parseInt($($(".block")[i]).data("x")) && snake.body[0].y == parseInt($($(".block")[i]).data("y")))
-            return true;
+    let blocks = document.querySelectorAll('.block');
+    if (!blocks) return false;
+    for (let i = 0 ; i < blocks.length ; i++)
+    if (snake.body[0].x == parseInt(blocks[i].dataset.x) && snake.body[0].y == parseInt(blocks[i].dataset.y)) return true;
     return false;
 }
 
 function placeSnakeIntoGrid(snake = new Snake()) {
-    $("#grid tr td").removeClass('head').removeClass('body');
+    let elems = document.querySelectorAll('#grid tr td');
+    elems.forEach(elem => {
+        elem.classList.remove('head');
+        elem.classList.remove('body');
+    });
     for(let i = 0; i < snake.body.length ; i++) {
-        let id = "#grid-"+snake.body[i].y+"-"+snake.body[i].x;
-        $(id).addClass(i == 0 ? 'head' : 'body');
+        let elem = document.querySelector(`#grid-${snake.body[i].y}-${snake.body[i].x}`);
+        elem.classList.add(i == 0 ? 'head' : 'body');
     }
 }

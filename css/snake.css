@@ -4,20 +4,6 @@ body {
 .center {
     margin: auto;
     width: max-content;
-  }
-.fruit {
-    background-color: #008000;
-}
-
-.block {
-    background-color: #490000;
-}
-
-.body {
-    background-color: #ff0000;
-}
-.head {
-    background-color: #0000ff;
 }
 table#grid {
     border-collapse: collapse;
@@ -29,8 +15,24 @@ table#grid,#grid td,#grid th {
 table#grid tr td {
     width: 15px;
     height: 15px;
+    background-position: center;
+    background-repeat : no-repeat;
 }
-
+.fruit {
+    background-image: url('../images/cherry-fruit.svg');
+    background-size: 85%;
+}
+.block {
+    background-image: url('../images/brick-wall.svg');
+    background-size: 109%;
+    background-position: cover;
+}
+.body {
+    background-color: #ff0000;
+}
+.head {
+    background-color: #0000ff;
+}
 .controls-container {
     margin-bottom: 10px;
 }

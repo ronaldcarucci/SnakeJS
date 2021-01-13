@@ -6,6 +6,13 @@ class SnakeGame {
         this.keys = keys;
     }
 
+    updateControls() {
+        document.querySelector(".control.control-up").setAttribute('data-key', this.keys.UP);
+        document.querySelector(".control.control-down").setAttribute('data-key',this.keys.DOWN);
+        document.querySelector(".control.control-left").setAttribute('data-key',this.keys.LEFT);
+        document.querySelector(".control.control-right").setAttribute('data-key',this.keys.RIGHT);
+    }
+
     prepareGrid() {
         let game = this;
         let score = document.querySelector('span#score');
@@ -36,7 +43,7 @@ class SnakeGame {
             });
             document.querySelectorAll("#controls-container span").forEach(control => {
                 control.addEventListener('click',function(){
-                    switch(control.dataset.key) {
+                    switch(control.getAttribute('data-key')) {
                         case game.keys.UP :
                             if (game.snake.direction != "DOWN")
                                 game.snake.changeDirection("UP");

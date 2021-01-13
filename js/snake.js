@@ -7,11 +7,12 @@ class SnakeGame {
 
     prepareGrid() {
         let game = this;
+        let score = document.querySelector('span#score');
         document.addEventListener("DOMContentLoaded", function() {
             game.snake.generateGrid();
             game.snake.generateBlocks();
             game.snake.placeSnakeIntoGrid();
-            document.querySelector('span#score').innerHTML = game.snake.score;
+            if (score != null) score.innerHTML = game.snake.score;
             document.addEventListener("keypress",function(event) {
                 switch(event.key) {
                     case 'z' :
@@ -32,7 +33,7 @@ class SnakeGame {
                         break;
                 }
             });
-            document.querySelectorAll("#controls span").forEach(control => {
+            document.querySelectorAll("#controls-container span").forEach(control => {
                 control.addEventListener('click',function(){
                     switch(control.dataset.key) {
                         case 'z' :
@@ -61,6 +62,7 @@ class SnakeGame {
     }
 
     executeGame() {
+        let score = document.querySelector('span#score');
         if((++this.count % 20) == 0 && document.querySelectorAll('.fruit').length == 0)
             this.snake.generateFruit();
         let lastPoint = this.snake.getLastPoint();
@@ -71,7 +73,7 @@ class SnakeGame {
             if (this.snake.checkFruit()) {
                 this.snake.grow(lastPoint);
                 document.querySelector('.fruit').classList.remove('fruit');
-                document.querySelector('span#score').innerHTML = ++this.snake.score;
+                if (score != null) score.innerHTML = ++this.snake.score;
             }
             this.snake.placeSnakeIntoGrid();
         }
@@ -151,7 +153,6 @@ class Snake {
     }
     
     generateFruit() {
-        console.log("generation");
         let x = Math.floor(Math.random() * this.columns);
         let y = Math.floor(Math.random() * this.lines);
         let id = "#grid-"+y+"-"+x;

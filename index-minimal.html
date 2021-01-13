@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>SnakeJS</title>
+    <link rel="stylesheet" href="./css/snake.css" />
+</head>
+<body>
+    <table id="grid">
+    </table>
+    
+    <div id="controls-container">
+        <span data-key="z">
+            UP
+        </span>
+       <span data-key="q">
+            LEFT
+       </span>
+      <span data-key="s">
+            DOWN
+       </span>
+      <span data-key="d">
+            RIGHT
+       </span>
+    </div>
+
+    <script src="./js/snake.js"></script>
+    <script>
+        let rows = 30;
+        let columns = 20;
+        let speed = 100;
+        let game = new SnakeGame(new Snake(rows, columns, speed));
+        game.prepareGrid();
+        game.executeGame();
+    </script>
+</body>
+</html>

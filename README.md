@@ -29,31 +29,31 @@ To use it several things are required :
 - a div with "controls-container" as id with containing control keys (if you want to use it on mobile) such as :
 
 ```HTML
-<div class="controls-container">
-    <span data-key="z">
-        Z
-    </span>
-   <span data-key="q">
-        Q
-   </span>
-  <span data-key="s">
-        S
-   </span>
-  <span data-key="d">
-        D
-   </span>
-</div>
+<div id="controls-container">
+        <span data-key="z">
+            UP
+        </span>
+       <span data-key="q">
+            LEFT
+       </span>
+      <span data-key="s">
+            DOWN
+       </span>
+      <span data-key="d">
+            RIGHT
+       </span>
+    </div>
 ```
 or as a complete version
 ```HTML
-<div class="controls-container">
+<div id="controls-container">
     <table id="controls">
         <tr>
             <td></td>
             <td>
                 <span class="icon is-large" data-key="z">
                     <i class="fas fa-arrow-alt-circle-up fa-3x"></i>
-                </span>
+                </span> 
             </td>
             <td></td>
         </tr>

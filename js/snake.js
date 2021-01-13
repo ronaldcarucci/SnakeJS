@@ -68,13 +68,13 @@ let snake = new Snake(30, 20, 100);
 let counts = 0;
 let timer = null;
 
-$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function() {
     generateGrid(snake);
     generateBlocks(snake);
     placeSnakeIntoGrid(snake);
-    $("span#score").text(snake.score);
-    $(document).keypress(function(event) {
-        switch(event.originalEvent.key) {
+    document.querySelector('span#score').innerHTML = snake.score;
+    document.addEventListener("keypress",function(event) {
+        switch(event.key) {
             case 'z' :
                 if (snake.direction != "DOWN")
                     snake.changeDirection("UP");
@@ -93,25 +93,27 @@ $(document).ready(function() {
                 break;
         }
     });
-    $("#controls span").click(function(){
-        switch($(this).data('key')) {
-            case 'z' :
-                if (snake.direction != "DOWN")
-                    snake.changeDirection("UP");
-                break;
-            case 's' :
-                if (snake.direction != "UP")
-                    snake.changeDirection("DOWN");
-                break;
-            case 'q' :
-                if (snake.direction != "RIGHT")
-                    snake.changeDirection("LEFT");
-                break;
-            case 'd' :
-                if (snake.direction != "LEFT")
-                    snake.changeDirection("RIGHT");
-                break;
-        }
+    document.querySelectorAll("#controls span").forEach(control => {
+        control.addEventListener('click',function(){
+            switch(control.dataset.key) {
+                case 'z' :
+                    if (snake.direction != "DOWN")
+                        snake.changeDirection("UP");
+                    break;
+                case 's' :
+                    if (snake.direction != "UP")
+                        snake.changeDirection("DOWN");
+                    break;
+                case 'q' :
+                    if (snake.direction != "RIGHT")
+                        snake.changeDirection("LEFT");
+                    break;
+                case 'd' :
+                    if (snake.direction != "LEFT")
+                        snake.changeDirection("RIGHT");
+                    break;
+            }
+        }, 'false');
     });
     timer = setInterval(()=> {
         executeGame();
@@ -146,7 +148,7 @@ function generateGrid(snake = new Snake()) {
         for (let j = 0; j < snake.columns ; j++)
             dom +='<td id="grid-'+i+'-'+j+'" data-x="'+j+'" data-y="'+i+'"></td>';
         dom += '</tr>';
-        $("#grid").append(dom);
+        document.querySelector("#grid").innerHTML += dom;
     }
 }
 
@@ -154,8 +156,10 @@ function generateFruit(snake = new Snake) {
     let x = Math.floor(Math.random() * snake.columns);
     let y = Math.floor(Math.random() * snake.lines);
     let id = "#grid-"+y+"-"+x;
-    if (!($(id).hasClass('body')) && !($(id).hasClass('head')) && !($(id).hasClass('block')))
-        $(id).addClass('fruit');
+    if (!document.querySelector(id).classList.contains('body') && 
+        !document.querySelector(id).classList.contains('head') && 
+        !document.querySelector(id).classList.contains('block') )
+        document.querySelector(id).classList.add('fruit');
 }
 
 function generateBlocks(snake = new Snake()) {
@@ -163,8 +167,9 @@ function generateBlocks(snake = new Snake()) {
         let x = Math.floor(Math.random() * snake.columns);
         let y = Math.floor(Math.random() * snake.lines);  
         let id = "#grid-"+y+"-"+x;
-        if (!($(id).hasClass('body')) && !($(id).hasClass('head')))
-            $(id).addClass('block');
+        if (!document.querySelector(id).classList.contains('body') && 
+            !document.querySelector(id).classList.contains('head'))
+            document.querySelector(id).classList.add('block');
     }
 }
 

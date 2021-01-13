@@ -8,15 +8,16 @@
     <link rel="stylesheet" href="./css/snake.css" />
 </head>
 <body>
-
-    <p>
+    <div class="center">
+        <p>
         Score : <span id="score"></span>
-    </p>
-
-    <table id="grid">
-    </table>
-
-    <div class="controls-container">
+        </p>
+    </div>
+    <div class="center">
+        <table id="grid">
+        </table>
+    </div>
+    <div class="controls-container center">
         <table id="controls">
             <tr>
                 <td></td>
@@ -55,13 +56,15 @@
         </table>
     </div>
 
-    <div>
+    <div class="center">
         <h3> Comment jouer ?</h3>
         <p>
             Pour contrôler le serpent, vous devez utiliser les touches Z S Q F <br/> 
             correspondants respectivement à HAUT BAS GAUCHE DROITE.
         </p>
     </div>
+    </div>
+    
 
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     <script src="./js/jquery-3.5.1.slim.min.js"></script>

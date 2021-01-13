@@ -1,6 +1,10 @@
 body {
-    margin: 25px; 
+    width: 100%;
 }
+.center {
+    margin: auto;
+    width: max-content;
+  }
 .fruit {
     background-color: #008000;
 }
@@ -28,6 +32,5 @@ table#grid tr td {
 }
 
 .controls-container {
-    margin-left : 75px;
     margin-bottom: 10px;
 }

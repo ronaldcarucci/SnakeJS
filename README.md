@@ -14,7 +14,7 @@ This is a tiny version of Snake in simple JS version.
 
 ## Requirements
 
-This projects needs Jquery to run.
+This projectshas no requirement to run. It is written in Vanilla JS.
 
 ## Use
 
@@ -81,7 +81,6 @@ or as a complete version
 
 ```HTML
 <link rel="stylesheet" href="./css/snake.css" />
-<script src="./js/jquery-3.5.1.slim.min.js"></script>
 <script src="./js/snake.js"></script>
 ```
 

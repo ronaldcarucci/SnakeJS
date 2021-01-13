@@ -1,8 +1,9 @@
 class SnakeGame {
-    constructor(snake = new Snake(), timer = 0) {
+    constructor(snake = new Snake(), keys = {'UP' : 'z', 'DOWN' : 's', 'LEFT' : 'q', 'RIGHT' : 'd'}, timer = 0) {
         this.snake = snake;
         this.timer = timer;
         this.count = 0;
+        this.keys = keys;
     }
 
     prepareGrid() {
@@ -15,19 +16,19 @@ class SnakeGame {
             if (score != null) score.innerHTML = game.snake.score;
             document.addEventListener("keypress",function(event) {
                 switch(event.key) {
-                    case 'z' :
+                    case game.keys.UP :
                         if (game.snake.direction != "DOWN")
                             game.snake.changeDirection("UP");
                         break;
-                    case 's' :
+                    case game.keys.DOWN :
                         if (game.snake.direction != "UP")
                             game.snake.changeDirection("DOWN");
                         break;
-                    case 'q' :
+                    case game.keys.LEFT :
                         if (game.snake.direction != "RIGHT")
                             game.snake.changeDirection("LEFT");
                         break;
-                    case 'd' :
+                    case game.keys.RIGHT :
                         if (game.snake.direction != "LEFT")
                             game.snake.changeDirection("RIGHT");
                         break;
@@ -36,19 +37,19 @@ class SnakeGame {
             document.querySelectorAll("#controls-container span").forEach(control => {
                 control.addEventListener('click',function(){
                     switch(control.dataset.key) {
-                        case 'z' :
+                        case game.keys.UP :
                             if (game.snake.direction != "DOWN")
                                 game.snake.changeDirection("UP");
                             break;
-                        case 's' :
+                        case game.keys.DOWN :
                             if (game.snake.direction != "UP")
                                 game.snake.changeDirection("DOWN");
                             break;
-                        case 'q' :
+                        case game.keys.LEFT :
                             if (game.snake.direction != "RIGHT")
                                 game.snake.changeDirection("LEFT");
                             break;
-                        case 'd' :
+                        case game.keys.RIGHT :
                             if (game.snake.direction != "LEFT")
                                 game.snake.changeDirection("RIGHT");
                             break;

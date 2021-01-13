@@ -84,6 +84,16 @@ or as a complete version
 <script src="./js/snake.js"></script>
 ```
 
+- write script into your HTML file or external JS file those lines :
+```Javascript
+let rows = 30; // My number of rows
+let columns = 20; // My number or columns
+let speed = 100; // My speed. Decrease for faster !
+let game = new SnakeGame(new Snake(rows, columns, speed));
+game.prepareGrid();
+game.executeGame();
+```
+
 - and that's all !
 
 ## Demo

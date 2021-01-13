@@ -56,17 +56,15 @@
         </table>
     </div>
 
-    <div class="center">
-        <h3> Comment jouer ?</h3>
-        <p>
-            Pour contrôler le serpent, vous devez utiliser les touches Z S Q F <br/> 
-            correspondants respectivement à HAUT BAS GAUCHE DROITE.
-        </p>
-    </div>
-    </div>
-    
-
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     <script src="./js/snake.js"></script>
+    <script>
+        let rows = 30;
+        let columns = 20;
+        let speed = 100;
+        let game = new SnakeGame(new Snake(rows, columns, speed));
+        game.prepareGrid();
+        game.executeGame();
+    </script>
 </body>
 </html>

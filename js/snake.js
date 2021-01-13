@@ -163,9 +163,12 @@ function generateFruit(snake = new Snake) {
 }
 
 function generateBlocks(snake = new Snake()) {
-    for (let i = 0 ; i < Math.floor(Math.random() * 7) + 3; i++) {
+    for (let i = 0 ; i < Math.floor(Math.random() * 10) + 10; i++) {
         let x = Math.floor(Math.random() * snake.columns);
-        let y = Math.floor(Math.random() * snake.lines);  
+        let y = 0;  
+        do {
+            y = Math.floor(Math.random() * snake.lines);  
+        } while (y == 3)
         let id = "#grid-"+y+"-"+x;
         if (!document.querySelector(id).classList.contains('body') && 
             !document.querySelector(id).classList.contains('head'))

@@ -4,6 +4,20 @@ class SnakeGame {
         this.timer = timer;
         this.count = 0;
         this.keys = keys;
+        this.lang = null;
+        let json = null;
+        let userLang = ("" + (navigator.language || navigator.userLanguage)).slice(0,2);
+        switch (userLang.toLowerCase()) {
+            case 'fr':
+            case 'en':
+                json = fetch(`./lang/${userLang}.json`);
+                break;
+            default :
+                json = fetch(`./lang/en.json`);
+        }
+        if (json != null) {
+            json.then(response => response.json()).then(data => this.lang = data);
+        }
     }
 
     updateControls() {
@@ -15,11 +29,13 @@ class SnakeGame {
 
     prepareGrid() {
         let game = this;
-        let score = document.querySelector('span#score');
+        let score = document.querySelector('#score');
+        
         document.addEventListener("DOMContentLoaded", function() {
             game.snake.generateGrid();
             game.snake.generateBlocks();
             game.snake.placeSnakeIntoGrid();
+           
             if (score != null) score.innerHTML = game.snake.score;
             document.addEventListener("keypress",function(event) {
                 switch(event.key) {
@@ -40,8 +56,8 @@ class SnakeGame {
                             game.snake.changeDirection("RIGHT");
                         break;
                 }
-            });
-            document.querySelectorAll("#controls-container span").forEach(control => {
+            }, );
+            document.querySelectorAll("#controls-container .control").forEach(control => {
                 control.addEventListener('click',function(){
                     switch(control.getAttribute('data-key')) {
                         case game.keys.UP :
@@ -70,7 +86,9 @@ class SnakeGame {
     }
 
     executeGame() {
-        let score = document.querySelector('span#score');
+        let scoreLabel = document.querySelector("#scoreLabel");
+        let score = document.querySelector('#score');
+        if (scoreLabel != null) scoreLabel.innerHTML = this.lang.score;
         if((++this.count % 20) == 0 && document.querySelectorAll('.fruit').length == 0)
             this.snake.generateFruit();
         let lastPoint = this.snake.getLastPoint();
@@ -87,7 +105,7 @@ class SnakeGame {
         }
         else {
             clearInterval(this.timer)
-            if (confirm('Perdu. Voulez-vous recommencer ?'))
+            if (confirm(this.lang.gameOver))
                 document.location.reload();
         }
     }

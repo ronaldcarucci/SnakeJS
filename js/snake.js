@@ -86,6 +86,8 @@ class SnakeGame {
     }
 
     executeGame() {
+        if (this.lang == null)
+            return;
         let scoreLabel = document.querySelector("#scoreLabel");
         let score = document.querySelector('#score');
         if (scoreLabel != null) scoreLabel.innerHTML = this.lang.score;

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>SnakeJS</title>
+    <link rel="stylesheet" href="./css/bulma.min.css" />
+    <link rel="stylesheet" href="./css/snake.css" />
+</head>
+<body>
+    <div class="center">
+        <p>
+        <span id="scoreLabel"></span> <span id="score"></span>
+        </p>
+    </div>
+    <div class="center">
+        <table id="grid">
+        </table>
+    </div>
+    <div id="controls-container" class="center">
+        <table id="controls">
+            <tr>
+                <td></td>
+                <td>
+                    <span class="icon is-large control control-up" data-key="z">
+                        <i class="fas fa-arrow-alt-circle-up fa-3x"></i>
+                    </span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="icon is-large control control-left" data-key="q">
+                        <i class="fas fa-arrow-alt-circle-left fa-3x"></i>
+                    </span>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <span class="icon is-large control control-right" data-key="d">
+                        <i class="fas fa-arrow-alt-circle-right fa-3x"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <span class="icon is-large control control-down" data-key="s">
+                        <i class="fas fa-arrow-alt-circle-down fa-3x"></i>
+                    </span>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    <script src="./js/snake.js"></script>
+    <script>
+        let rows = 30;
+        let columns = 20;
+        let speed = 100;
+        let game = new SnakeGame(new Snake(rows, columns, speed), {
+            'UP' : 'z',
+            'DOWN' : 's',
+            'LEFT' : 'q',
+            'RIGHT' : 'd'
+        });
+        game.updateControls();
+        game.prepareGrid();
+        game.executeGame();
+    </script>
+</body>
+</html>

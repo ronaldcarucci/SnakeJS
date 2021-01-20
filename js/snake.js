@@ -107,8 +107,9 @@ class SnakeGame {
         }
         else {
             clearInterval(this.timer)
-            if (confirm(this.lang.gameOver))
-                document.location.reload();
+            document.querySelector("#finalScoreLabel").innerHTML = this.lang.finalScore;
+            document.querySelector("#finalScore").innerHTML = this.snake.score;
+            document.querySelector("#gameOverDiv").style.display = 'block';
         }
     }
 }

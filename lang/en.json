@@ -1,5 +1,6 @@
 {
     "score" : "Score:",
     "gameOver" : "Lose. Do you want to retry?",
-    "newGame" : "New game"
+    "newGame" : "New game",
+    "finalScore" : "Game over. Here is your score: "
 }

@@ -56,6 +56,22 @@
         </table>
     </div>
 
+    <div id="gameOverDiv" style="position: absolute; top:0px; left: 0px; width: 100vw; height: 100vh; display: none; background-color: #ffffff">
+        <div class="center">
+            <p>
+                <span id="finalScoreLabel"></span><span id="finalScore"></span>
+            </p>
+        </div>
+        <br />
+        <div class="center">
+            <div class="columns">
+                <div class="column is-12">
+                    <button class="button is-large" id="restart-btn"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     <script src="./js/snake.js"></script>
     <script>
@@ -71,6 +87,11 @@
         game.updateControls();
         game.prepareGrid();
         game.executeGame();
+
+        setTimeout(() => document.querySelector("#restart-btn").innerHTML = game.lang.newGame , 500);
+        document.querySelector("#restart-btn").addEventListener("click", function() {
+            document.location.reload();
+        });
     </script>
 </body>
 </html>

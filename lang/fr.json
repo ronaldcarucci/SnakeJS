@@ -1,5 +1,6 @@
 {
     "score" : "Score :",
     "gameOver" : "Perdu. Voulez-vous recommencer ?",
-    "newGame" : "Nouvelle partie"
+    "newGame" : "Nouvelle partie",
+    "finalScore" : "La partie est terminée. Voici votre score : "
 }

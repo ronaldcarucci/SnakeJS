@@ -2,5 +2,9 @@
     "score" : "Score :",
     "gameOver" : "Perdu. Voulez-vous recommencer ?",
     "newGame" : "Nouvelle partie",
+    "newGameEasy" : "Facile",
+    "newGameNormal" : "Normal",
+    "newGameDifficult" : "Difficile",
+    "returnToHome" : "Retour à l'accueil",
     "finalScore" : "La partie est terminée. Voici votre score : "
 }

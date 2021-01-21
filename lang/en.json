@@ -2,5 +2,9 @@
     "score" : "Score:",
     "gameOver" : "Lose. Do you want to retry?",
     "newGame" : "New game",
+    "newGameEasy" : "Easy",
+    "newGameNormal" : "Normal",
+    "newGameDifficult" : "Difficult",
+    "returnToHome" : "Back to home",
     "finalScore" : "Game over. Here is your score: "
 }

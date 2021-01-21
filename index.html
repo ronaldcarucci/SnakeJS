@@ -9,9 +9,19 @@
 </head>
 <body style="display: none; margin-top: 50px;">
 <div class="center">
-    <div class="columns">
+    <div class="columns center">
         <div class="column is-12">
-            <button class="button is-large" id="new-game-btn">New Game</button>
+            <button class="button is-large new-game-btn is-success" data-level="easy"></button>
+        </div>
+    </div>
+    <div class="columns center">
+        <div class="column is-12">
+            <button class="button is-large new-game-btn is-warning" data-level="normal"></button>
+        </div>
+    </div>
+    <div class="columns center">
+        <div class="column is-12">
+            <button class="button is-large new-game-btn is-danger" data-level="difficult"></button>
         </div>
     </div>
 </div>
@@ -32,13 +42,17 @@
     }
     if (json != null) {
         json.then(response => response.json()).then(data => {
-            document.querySelector("#new-game-btn").innerHTML = data.newGame;
+            document.querySelector(".new-game-btn[data-level='easy']").innerHTML = data.newGameEasy;
+            document.querySelector(".new-game-btn[data-level='normal']").innerHTML = data.newGameNormal;
+            document.querySelector(".new-game-btn[data-level='difficult']").innerHTML = data.newGameDifficult;
             document.querySelector("body").style.display = 'block';
         });
     }
 
-    document.querySelector("#new-game-btn").addEventListener("click",function() {
-        document.location = "./game.html";
+    document.querySelectorAll(".new-game-btn").forEach(element => {
+        element.addEventListener("click",function() {
+            document.location = "./game.html?level="+this.getAttribute("data-level");
+        });
     });
 
 

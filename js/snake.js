@@ -1,10 +1,12 @@
 class SnakeGame {
-    constructor(snake = new Snake(), keys = {'UP' : 'z', 'DOWN' : 's', 'LEFT' : 'q', 'RIGHT' : 'd'}, timer = 0) {
+    constructor(snake = new Snake(), keys = {'UP' : 'z', 'DOWN' : 's', 'LEFT' : 'q', 'RIGHT' : 'd'}, timer = 0, minBlocks = 0, maxBlocks = 20) {
         this.snake = snake;
         this.timer = timer;
         this.count = 0;
         this.keys = keys;
         this.lang = null;
+        this.minBlocks = minBlocks;
+        this.maxBlocks = maxBlocks;
         let json = null;
         let userLang = ("" + (navigator.language || navigator.userLanguage)).slice(0,2);
         switch (userLang.toLowerCase()) {
@@ -33,7 +35,7 @@ class SnakeGame {
         
         document.addEventListener("DOMContentLoaded", function() {
             game.snake.generateGrid();
-            game.snake.generateBlocks();
+            game.snake.generateBlocks(game.minBlocks, game.maxBlocks);
             game.snake.placeSnakeIntoGrid();
            
             if (score != null) score.innerHTML = game.snake.score;
@@ -191,8 +193,8 @@ class Snake {
             document.querySelector(id).classList.add('fruit');
     }
     
-    generateBlocks() {
-        for (let i = 0 ; i < Math.floor(Math.random() * 10) + 10; i++) {
+    generateBlocks(min = 10, max = 20) {
+        for (let i = 0 ; i < Math.floor(Math.random() * (max-min)) + min; i++) {
             let x = Math.floor(Math.random() * this.columns);
             let y = 0;  
             do {

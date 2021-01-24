@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./css/snake.css" />
 </head>
 <body style="display: none; margin-top: 50px;">
-<div class="center">
+<div class="center" id="main-menu">
     <div class="columns center">
         <div class="column is-12">
             <button class="button is-large new-game-btn is-success" data-level="easy"></button>
@@ -22,6 +22,75 @@
     <div class="columns center">
         <div class="column is-12">
             <button class="button is-large new-game-btn is-danger" data-level="difficult"></button>
+        </div>
+    </div>
+    <div class="columns center">
+        <div class="column is-12">
+            <button class="button is-large new-custom-game-btn is-info" data-level="custom"></button>
+        </div>
+    </div>
+</div>
+
+<div class="center is-hidden" id="customize-level">
+    <div class="columns center">
+        <div class="column is-12">
+            <p id="custom-min-blocks-label"></p>
+        </div>
+    </div>
+    <div class="columns center">
+        <div class="column is-12">
+            <div class="field">
+                <div class="control">
+                    <div class="select is-medium">
+                        <select id="custom-min-blocks">
+                            <option>0</option>
+                            <option>5</option>
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                            <option>25</option>
+                            <option>30</option>
+                            <option>35</option>
+                            <option>40</option>
+                            <option>45</option>
+                            <option>50</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns center">
+        <div class="column is-12">
+            <p id="custom-max-blocks-label"></p>
+        </div>
+    </div>
+    <div class="columns center">
+        <div class="column is-12">
+            <div class="field">
+                <div class="control">
+                    <div class="select is-medium">
+                        <select id="custom-max-blocks">
+                            <option>0</option>
+                            <option>5</option>
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                            <option>25</option>
+                            <option>30</option>
+                            <option>35</option>
+                            <option>40</option>
+                            <option>45</option>
+                            <option>50</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns center">
+        <div class="column is-12">
+            <button class="button is-large new-custom-game-btn-launcher is-success">OK</button>
         </div>
     </div>
 </div>
@@ -45,6 +114,9 @@
             document.querySelector(".new-game-btn[data-level='easy']").innerHTML = data.newGameEasy;
             document.querySelector(".new-game-btn[data-level='normal']").innerHTML = data.newGameNormal;
             document.querySelector(".new-game-btn[data-level='difficult']").innerHTML = data.newGameDifficult;
+            document.querySelector("[data-level='custom']").innerHTML = data.newGameCustom;
+            document.querySelector("#custom-min-blocks-label").innerHTML = data.minBlocs;
+            document.querySelector("#custom-max-blocks-label").innerHTML = data.maxBlocs;
             document.querySelector("body").style.display = 'block';
         });
     }
@@ -55,6 +127,14 @@
         });
     });
 
+    document.querySelector(".new-custom-game-btn").addEventListener("click", function() {
+        document.querySelector("#main-menu").classList.add("is-hidden");
+        document.querySelector("#customize-level").classList.remove("is-hidden");
+    });
+
+    document.querySelector(".new-custom-game-btn-launcher").addEventListener("click", function() {
+        document.location = "./game.html?level=custom&minblocks="+document.querySelector("#custom-min-blocks").value+"&maxblocks="+document.querySelector("#custom-max-blocks").value;
+    });
 
 </script>
 </body>

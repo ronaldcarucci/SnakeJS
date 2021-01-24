@@ -5,6 +5,9 @@
     "newGameEasy" : "Easy",
     "newGameNormal" : "Normal",
     "newGameDifficult" : "Difficult",
+    "newGameCustom" : "Custom",
+    "minBlocs" : "Minimal obstacles amount",
+    "maxBlocs" : "Maximal obstacles amount",
     "returnToHome" : "Back to home",
     "finalScore" : "Game over. Here is your score: "
 }
